@@ -1,3 +1,5 @@
+import { supabase } from "@/app/supabase-client";
+import { router } from "expo-router";
 import { useState } from "react";
 import {
   ActivityIndicator,
@@ -8,16 +10,6 @@ import {
   View,
 } from "react-native";
 
-const colors = {
-  primary: "#153E75",
-  surface: "#FFFFFF",
-  border: "#D7E3EE",
-  inputBg: "#F7FAFC",
-  muted: "#6B7280",
-  placeholder: "#9CA8B8",
-  error: "#D64545",
-};
-
 export function SignupForm() {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
@@ -26,20 +18,51 @@ export function SignupForm() {
   const [error, setError] = useState("");
   const [submitting, setSubmitting] = useState(false);
 
-  const handleSignup = () => {
+  const handleSignup = async () => {
     if (!username || !email || !password || !confirmPassword) {
       setError("Please fill in all fields");
       return;
     }
+
     if (password !== confirmPassword) {
       setError("Passwords do not match");
       return;
     }
+
     setError("");
     setSubmitting(true);
-    console.log("Username:", username, "Email:", email);
-    // TODO: call your signup API here
+
+    const { data, error: signupError } = await supabase.auth.signUp({
+      email,
+      password,
+    });
+
+    if (signupError) {
+      setError(signupError.message);
+      setSubmitting(false);
+      return;
+    }
+
+    const user = data.user;
+
+    if (user) {
+      const { error: profileError } = await supabase.from("profiles").insert([
+        {
+          id: user.id,
+          username,
+        },
+      ]);
+
+      if (profileError) {
+        setError(profileError.message);
+        setSubmitting(false);
+        return;
+      }
+    }
+
     setSubmitting(false);
+
+    router.replace("/home");
   };
 
   return (
@@ -49,52 +72,43 @@ export function SignupForm() {
       <TextInput
         style={styles.input}
         placeholder="Username"
-        placeholderTextColor={colors.placeholder}
         value={username}
         onChangeText={setUsername}
-        autoCapitalize="none"
-        autoComplete="username"
-        textContentType="username"
+        placeholderTextColor={"#3c4a5f"}
       />
 
       <TextInput
         style={styles.input}
         placeholder="Email address"
-        placeholderTextColor={colors.placeholder}
         value={email}
         onChangeText={setEmail}
+        placeholderTextColor={"#3c4a5f"}
         keyboardType="email-address"
-        autoCapitalize="none"
-        autoComplete="email"
-        textContentType="emailAddress"
       />
 
       <TextInput
         style={styles.input}
         placeholder="Password"
-        placeholderTextColor={colors.placeholder}
         secureTextEntry
         value={password}
         onChangeText={setPassword}
-        textContentType="newPassword"
+        placeholderTextColor={"#3c4a5f"}
       />
 
       <TextInput
         style={styles.input}
         placeholder="Confirm password"
-        placeholderTextColor={colors.placeholder}
         secureTextEntry
         value={confirmPassword}
         onChangeText={setConfirmPassword}
-        textContentType="newPassword"
+        placeholderTextColor={"#3c4a5f"}
       />
 
       {error ? <Text style={styles.error}>{error}</Text> : null}
 
       <TouchableOpacity
-        style={[styles.button, submitting && styles.buttonDisabled]}
+        style={styles.button}
         onPress={handleSignup}
-        activeOpacity={0.8}
         disabled={submitting}
       >
         {submitting ? (
@@ -108,17 +122,33 @@ export function SignupForm() {
 }
 
 export function LoginForm() {
-  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const [submitting, setSubmitting] = useState(false);
 
-  const handleLogin = () => {
-    if (!username || !password) {
-      setError("Please enter a valid username and password");
+  const handleLogin = async () => {
+    if (!email || !password) {
+      setError("Please enter email and password");
       return;
     }
+
     setError("");
-    // TODO: call your login API here
+    setSubmitting(true);
+
+    const { error: loginError } = await supabase.auth.signInWithPassword({
+      email,
+      password,
+    });
+
+    setSubmitting(false);
+
+    if (loginError) {
+      setError(loginError.message);
+      return;
+    }
+
+    router.replace("/home");
   };
 
   return (
@@ -127,23 +157,20 @@ export function LoginForm() {
 
       <TextInput
         style={styles.input}
-        placeholder="Username"
-        placeholderTextColor={colors.placeholder}
-        value={username}
-        onChangeText={setUsername}
-        autoCapitalize="none"
-        autoComplete="username"
-        textContentType="username"
+        placeholder="Email"
+        value={email}
+        onChangeText={setEmail}
+        placeholderTextColor={"#3c4a5f"}
+        keyboardType="email-address"
       />
 
       <TextInput
         style={styles.input}
         placeholder="Password"
-        placeholderTextColor={colors.placeholder}
         secureTextEntry
         value={password}
         onChangeText={setPassword}
-        textContentType="password"
+        placeholderTextColor={"#3c4a5f"}
       />
 
       {error ? <Text style={styles.error}>{error}</Text> : null}
@@ -151,13 +178,25 @@ export function LoginForm() {
       <TouchableOpacity
         style={styles.button}
         onPress={handleLogin}
-        activeOpacity={0.8}
+        disabled={submitting}
       >
-        <Text style={styles.buttonText}>Log in</Text>
+        {submitting ? (
+          <ActivityIndicator color="#fff" />
+        ) : (
+          <Text style={styles.buttonText}>Log in</Text>
+        )}
       </TouchableOpacity>
     </View>
   );
 }
+
+const colors = {
+  primary: "#153E75",
+  surface: "#FFFFFF",
+  border: "#D7E3EE",
+  inputBg: "#F7FAFC",
+  error: "#D64545",
+};
 
 const styles = StyleSheet.create({
   card: {
@@ -192,7 +231,6 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     backgroundColor: colors.inputBg,
     fontSize: 15,
-    color: "#1F2937",
   },
 
   button: {
@@ -202,10 +240,6 @@ const styles = StyleSheet.create({
     paddingVertical: 13,
     borderRadius: 12,
     alignItems: "center",
-  },
-
-  buttonDisabled: {
-    opacity: 0.6,
   },
 
   buttonText: {

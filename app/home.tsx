@@ -1,4 +1,6 @@
 import { supabase } from "@/app/supabase-client";
+import ExceriseTracker from "@/components/excersise_tracker/excersise_tracker";
+import Homepage from "@/components/homepage/homepage";
 import { useEffect, useState } from "react";
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
@@ -37,12 +39,13 @@ export default function Home() {
   return (
     <View style={styles.container}>
       {activeMenu === "menu" && (
-        <Text style={styles.greeting}>Hello {username}</Text>
+        <View>
+          <Text style={styles.greeting}>Hello {username}</Text>
+          <Homepage />
+        </View>
       )}
 
-      {activeMenu === "excersiseTracker" && (
-        <Text style={styles.greeting}>Exercise Tracker</Text>
-      )}
+      {activeMenu === "excersiseTracker" && <ExceriseTracker />}
 
       {activeMenu === "gemini" && <Text style={styles.greeting}>Gemini</Text>}
 

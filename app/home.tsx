@@ -1,6 +1,8 @@
 import { supabase } from "@/app/supabase-client";
 import ExceriseTracker from "@/components/excersise_tracker/excersise_tracker";
+import FAQPage from "@/components/FAQs/FAQs";
 import Homepage from "@/components/homepage/homepage";
+import ProfilePage from "@/components/profile_page/profile_page";
 import { useEffect, useState } from "react";
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
@@ -40,7 +42,6 @@ export default function Home() {
     <View style={styles.container}>
       {activeMenu === "menu" && (
         <View>
-          <Text style={styles.greeting}>Hello {username}</Text>
           <Homepage />
         </View>
       )}
@@ -53,13 +54,13 @@ export default function Home() {
         <Text style={styles.greeting}>Leaderboard</Text>
       )}
 
-      {activeMenu === "profile" && <Text style={styles.greeting}>Profile</Text>}
+      {activeMenu === "profile" && <ProfilePage />}
 
       {activeMenu === "gymLocator" && (
         <Text style={styles.greeting}>Gym Locator</Text>
       )}
 
-      {activeMenu === "faq" && <Text style={styles.greeting}>FAQ</Text>}
+      {activeMenu === "faq" && <FAQPage />}
 
       <View style={styles.menu}>
         <View style={styles.sideGroup}>
@@ -126,7 +127,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#d6eefc",
     paddingHorizontal: 20,
-    paddingTop: 60,
+    paddingTop: 10,
   },
 
   greeting: {

@@ -1,3 +1,4 @@
+import exercisesData from "@/assets/workouts.json";
 import { useState } from "react";
 import {
   ScrollView,
@@ -7,14 +8,67 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
+import Dropdown from "../dropdown";
+import NewExercise from "./new_excersise";
 
 export default function ExceriseTracker() {
-  type MenuOption = "menu" | "newWorkout" | "viewWorkouts" | "friends";
+  type MenuOption =
+    | "menu"
+    | "newWorkoutMenu"
+    | "newWorkoutInterface"
+    | "viewWorkouts"
+    | "friends";
 
   const [activeMenu, setActiveMenu] = useState<MenuOption>("menu");
   const [workoutName, setWorkoutName] = useState("");
   const [workoutBio, setWorkoutBio] = useState("");
   const [workoutType, setWorkoutType] = useState("");
+
+  type Exercise = {
+    id: string;
+    name: string;
+    sets: number;
+    reps: number;
+  };
+
+  const exerciseOptions = exercisesData.map((e) => ({
+    label: e.exercisename,
+    value: e.exercisename,
+  }));
+
+  const [exercises, setExercises] = useState<Exercise[]>([]);
+
+  const addExercise = () => {
+    const newExercise: Exercise = {
+      id: Date.now().toString(),
+      name: "",
+      sets: 3,
+      reps: 10,
+    };
+    setExercises((prev) => [...prev, newExercise]);
+  };
+
+  const [displayError, setDisplayError] = useState("");
+
+  const changeMenu = (menuType: MenuOption) => {
+    setDisplayError("");
+    setActiveMenu(menuType);
+  };
+
+  const handleNewWorkout = () => {
+    if (!workoutName || !workoutType) {
+      setDisplayError("Please enter required fields");
+    } else {
+      changeMenu("newWorkoutInterface");
+    }
+  };
+
+  const today = new Date();
+  const formatted = today.toLocaleDateString("en-GB", {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+  });
 
   return (
     <View style={styles.container}>
@@ -24,13 +78,13 @@ export default function ExceriseTracker() {
           <View style={styles.card}>
             <TouchableOpacity
               style={styles.button}
-              onPress={() => setActiveMenu("viewWorkouts")}
+              onPress={() => changeMenu("viewWorkouts")}
             >
               <Text style={styles.buttonText}>View workouts</Text>
             </TouchableOpacity>
             <TouchableOpacity
               style={styles.button}
-              onPress={() => setActiveMenu("newWorkout")}
+              onPress={() => changeMenu("newWorkoutMenu")}
             >
               <Text style={styles.buttonText}>Start a new workout</Text>
             </TouchableOpacity>
@@ -39,7 +93,7 @@ export default function ExceriseTracker() {
           <View style={styles.card}>
             <TouchableOpacity
               style={styles.buttonOutline}
-              onPress={() => setActiveMenu("friends")}
+              onPress={() => changeMenu("friends")}
             >
               <Text style={styles.buttonOutlineText}>Add a new friend</Text>
             </TouchableOpacity>
@@ -47,11 +101,11 @@ export default function ExceriseTracker() {
         </ScrollView>
       )}
 
-      {activeMenu === "newWorkout" && (
+      {activeMenu === "newWorkoutMenu" && (
         <ScrollView contentContainerStyle={styles.scrollContent}>
           <TouchableOpacity
             style={styles.backButton}
-            onPress={() => setActiveMenu("menu")}
+            onPress={() => changeMenu("menu")}
           >
             <Text style={styles.backButtonText}>← Back</Text>
           </TouchableOpacity>
@@ -84,21 +138,92 @@ export default function ExceriseTracker() {
               />
             </View>
 
-            <View style={styles.formGroup}>
-              <Text style={styles.label}>Workout type</Text>
-              <TextInput
-                style={styles.input}
-                placeholder="e.g. Strength, Cardio, HIIT"
-                placeholderTextColor="#9AAAB8"
-                value={workoutType}
-                onChangeText={setWorkoutType}
-              />
-            </View>
+            <Dropdown
+              label="Workout type"
+              placeholder="Select which workout you will do"
+              options={[
+                { label: "Strength", value: "strength" },
+                { label: "Cardio", value: "cardio" },
+                { label: "HIIT", value: "hiit" },
+                { label: "Mobility", value: "mobility" },
+                { label: "Other", value: "other" },
+              ]}
+              selectedValue={workoutType}
+              onValueChange={setWorkoutType}
+            />
 
-            <TouchableOpacity style={styles.button}>
+            <TouchableOpacity style={styles.button} onPress={handleNewWorkout}>
               <Text style={styles.buttonText}>Begin workout!</Text>
             </TouchableOpacity>
+
+            {displayError && <Text>{displayError}</Text>}
           </View>
+        </ScrollView>
+      )}
+
+      {activeMenu === "newWorkoutInterface" && (
+        <ScrollView contentContainerStyle={styles.scrollContent}>
+          <TouchableOpacity
+            style={styles.backButton}
+            onPress={() => changeMenu("newWorkoutMenu")}
+          >
+            <Text style={styles.backButtonText}>← Back</Text>
+          </TouchableOpacity>
+
+          <View style={styles.card}>
+            <View style={styles.workoutHeaderRow}>
+              <Text style={styles.heading}>{workoutName}</Text>
+              {workoutType ? (
+                <View style={styles.badge}>
+                  <Text style={styles.badgeText}>{workoutType}</Text>
+                </View>
+              ) : null}
+            </View>
+
+            <Text style={styles.dateText}>{formatted}</Text>
+
+            {workoutBio ? (
+              <Text style={styles.bioText}>{workoutBio}</Text>
+            ) : null}
+
+            <View style={styles.divider} />
+            {exercises.length === 0 ? (
+              <View style={styles.emptyState}>
+                <Text style={styles.emptyStateText}>
+                  No exercises added yet
+                </Text>
+              </View>
+            ) : (
+              exercises.map((exercise) => (
+                <NewExercise
+                  key={exercise.id}
+                  exercise={exercise}
+                  exerciseOptions={exerciseOptions}
+                  onChange={(updated) =>
+                    setExercises((prev) =>
+                      prev.map((e) => (e.id === updated.id ? updated : e)),
+                    )
+                  }
+                  onRemove={() =>
+                    setExercises((prev) =>
+                      prev.filter((e) => e.id !== exercise.id),
+                    )
+                  }
+                />
+              ))
+            )}
+
+            <TouchableOpacity
+              style={styles.buttonOutline}
+              onPress={addExercise}
+            >
+              <Text style={styles.buttonOutlineText}>+ Add exercise</Text>
+            </TouchableOpacity>
+          </View>
+
+          <TouchableOpacity style={styles.button}>
+            <Text style={styles.buttonText}>Save workout</Text>
+          </TouchableOpacity>
         </ScrollView>
       )}
     </View>
@@ -120,7 +245,7 @@ const styles = StyleSheet.create({
   },
 
   scrollContent: {
-    paddingBottom: 24,
+    paddingBottom: 100,
   },
 
   heading: {
@@ -219,5 +344,59 @@ const styles = StyleSheet.create({
   textArea: {
     height: 90,
     paddingTop: 11,
+  },
+
+  workoutHeaderRow: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "flex-start",
+    marginBottom: 4,
+  },
+
+  badge: {
+    backgroundColor: colors.inputBg,
+    borderWidth: 1,
+    borderColor: colors.border,
+    borderRadius: 20,
+    paddingHorizontal: 12,
+    paddingVertical: 5,
+    marginTop: 4,
+  },
+
+  badgeText: {
+    color: colors.primary,
+    fontSize: 12,
+    fontWeight: "700",
+    textTransform: "capitalize",
+  },
+
+  dateText: {
+    fontSize: 14,
+    color: colors.label,
+    marginBottom: 12,
+  },
+
+  bioText: {
+    fontSize: 15,
+    color: colors.primary,
+    lineHeight: 21,
+    marginBottom: 16,
+  },
+
+  divider: {
+    height: 1,
+    backgroundColor: colors.border,
+    marginVertical: 16,
+  },
+
+  emptyState: {
+    paddingVertical: 24,
+    alignItems: "center",
+    marginBottom: 16,
+  },
+
+  emptyStateText: {
+    color: colors.label,
+    fontSize: 14,
   },
 });

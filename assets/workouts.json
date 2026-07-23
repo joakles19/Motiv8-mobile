@@ -1,0 +1,458 @@
+[
+  {
+    "exercisename": "Push Up",
+    "workouttype": "Bodyweight",
+    "description": "Upper body pushing exercise targeting chest, shoulders, and triceps",
+    "input_type": "reps"
+  },
+  {
+    "exercisename": "Pull Up",
+    "workouttype": "Bodyweight",
+    "description": "Upper body pulling exercise targeting back and biceps",
+    "input_type": "reps"
+  },
+  {
+    "exercisename": "Squat",
+    "workouttype": "Strength",
+    "description": "Lower body compound exercise targeting quads, glutes, and hamstrings",
+    "input_type": "reps"
+  },
+  {
+    "exercisename": "Lunge",
+    "workouttype": "Strength",
+    "description": "Unilateral leg exercise targeting quads, glutes, and balance",
+    "input_type": "reps"
+  },
+  {
+    "exercisename": "Deadlift",
+    "workouttype": "Strength",
+    "description": "Full body compound lift targeting posterior chain muscles",
+    "input_type": "reps"
+  },
+  {
+    "exercisename": "Bench Press",
+    "workouttype": "Strength",
+    "description": "Upper body pushing exercise targeting chest, shoulders, and triceps",
+    "input_type": "reps"
+  },
+  {
+    "exercisename": "Bicep Curl",
+    "workouttype": "Strength",
+    "description": "Isolation exercise targeting the biceps muscles",
+    "input_type": "reps"
+  },
+  {
+    "exercisename": "Tricep Dip",
+    "workouttype": "Bodyweight",
+    "description": "Upper body pushing exercise targeting triceps and shoulders",
+    "input_type": "reps"
+  },
+  {
+    "exercisename": "Plank",
+    "workouttype": "Core",
+    "description": "Static core exercise targeting abdominals, lower back, and shoulders",
+    "input_type": "duration"
+  },
+  {
+    "exercisename": "Crunch",
+    "workouttype": "Core",
+    "description": "Abdominal curl exercise targeting rectus abdominis",
+    "input_type": "reps"
+  },
+  {
+    "exercisename": "Russian Twist",
+    "workouttype": "Core",
+    "description": "Rotational core exercise targeting obliques",
+    "input_type": "reps"
+  },
+  {
+    "exercisename": "Mountain Climbers",
+    "workouttype": "HIIT",
+    "description": "Full body cardio movement combining core and leg activation",
+    "input_type": "duration"
+  },
+  {
+    "exercisename": "Burpees",
+    "workouttype": "HIIT",
+    "description": "High-intensity full body exercise combining squat, push-up, and jump",
+    "input_type": "reps"
+  },
+  {
+    "exercisename": "Jump Rope",
+    "workouttype": "Cardio",
+    "description": "Cardiovascular endurance exercise for legs, arms, and coordination",
+    "input_type": "duration"
+  },
+  {
+    "exercisename": "Running",
+    "workouttype": "Cardio",
+    "description": "Cardiovascular endurance exercise targeting legs and heart",
+    "input_type": "duration"
+  },
+  {
+    "exercisename": "Cycling",
+    "workouttype": "Cardio",
+    "description": "Cardiovascular leg endurance exercise using stationary or road bike",
+    "input_type": "duration"
+  },
+  {
+    "exercisename": "Yoga Stretch",
+    "workouttype": "Flexibility",
+    "description": "Full body stretching exercise to improve flexibility and posture",
+    "input_type": "duration"
+  },
+  {
+    "exercisename": "Hamstring Stretch",
+    "workouttype": "Flexibility",
+    "description": "Seated stretch targeting hamstrings and lower back",
+    "input_type": "duration"
+  },
+  {
+    "exercisename": "Shoulder Stretch",
+    "workouttype": "Flexibility",
+    "description": "Stretching exercise to improve shoulder mobility",
+    "input_type": "duration"
+  },
+  {
+    "exercisename": "Cat-Cow Stretch",
+    "workouttype": "Flexibility",
+    "description": "Yoga exercise improving spinal flexibility and mobility",
+    "input_type": "duration"
+  },
+  {
+    "exercisename": "Glute Bridge",
+    "workouttype": "Bodyweight",
+    "description": "Hip extension exercise targeting glutes and lower back",
+    "input_type": "reps"
+  },
+  {
+    "exercisename": "Leg Raise",
+    "workouttype": "Core",
+    "description": "Lower abdominal exercise targeting hip flexors and lower abs",
+    "input_type": "reps"
+  },
+  {
+    "exercisename": "Side Plank",
+    "workouttype": "Core",
+    "description": "Static lateral core exercise targeting obliques and shoulders",
+    "input_type": "duration"
+  },
+  {
+    "exercisename": "High Knees",
+    "workouttype": "HIIT",
+    "description": "Cardio-based exercise raising knees quickly for heart rate and endurance",
+    "input_type": "duration"
+  },
+  {
+    "exercisename": "Jump Squat",
+    "workouttype": "HIIT",
+    "description": "Explosive leg exercise targeting quads, glutes, and calves",
+    "input_type": "reps"
+  },
+  {
+    "exercisename": "Side Lunge",
+    "workouttype": "Strength",
+    "description": "Lower body unilateral exercise targeting adductors and glutes",
+    "input_type": "reps"
+  },
+  {
+    "exercisename": "Calf Raise",
+    "workouttype": "Strength",
+    "description": "Isolation exercise targeting calf muscles",
+    "input_type": "reps"
+  },
+  {
+    "exercisename": "Chest Fly",
+    "workouttype": "Strength",
+    "description": "Isolation exercise targeting chest muscles using dumbbells or cables",
+    "input_type": "reps"
+  },
+  {
+    "exercisename": "Overhead Press",
+    "workouttype": "Strength",
+    "description": "Shoulder press exercise targeting deltoids and triceps",
+    "input_type": "reps"
+  },
+  {
+    "exercisename": "Lat Pulldown",
+    "workouttype": "Strength",
+    "description": "Upper body pulling exercise targeting lats and biceps",
+    "input_type": "reps"
+  },
+  {
+    "exercisename": "Leg Curl",
+    "workouttype": "Strength",
+    "description": "Isolation exercise targeting hamstrings",
+    "input_type": "reps"
+  },
+  {
+    "exercisename": "Leg Extension",
+    "workouttype": "Strength",
+    "description": "Isolation exercise targeting quadriceps",
+    "input_type": "reps"
+  },
+  {
+    "exercisename": "Front Kick",
+    "workouttype": "Bodyweight",
+    "description": "Dynamic leg exercise targeting hip flexors and core",
+    "input_type": "reps"
+  },
+  {
+    "exercisename": "Side Kick",
+    "workouttype": "Bodyweight",
+    "description": "Leg exercise targeting glutes, hips, and balance",
+    "input_type": "reps"
+  },
+  {
+    "exercisename": "Plank Shoulder Tap",
+    "workouttype": "Core",
+    "description": "Core stability exercise engaging shoulders and obliques",
+    "input_type": "duration"
+  },
+  {
+    "exercisename": "Bird Dog",
+    "workouttype": "Core",
+    "description": "Core and balance exercise targeting abs, lower back, and glutes",
+    "input_type": "reps"
+  },
+  {
+    "exercisename": "Foam Roller",
+    "workouttype": "Flexibility",
+    "description": "Self-myofascial release exercise for muscle recovery",
+    "input_type": "duration"
+  },
+  {
+    "exercisename": "Hip Flexor Stretch",
+    "workouttype": "Flexibility",
+    "description": "Stretching exercise targeting hip flexors and quads",
+    "input_type": "duration"
+  },
+  {
+    "exercisename": "Arm Circles",
+    "workouttype": "Flexibility",
+    "description": "Dynamic shoulder mobility exercise warming up the arms",
+    "input_type": "duration"
+  },
+  {
+    "exercisename": "Dumbbell Row",
+    "workouttype": "Strength",
+    "description": "Upper body pulling exercise targeting back and biceps",
+    "input_type": "reps"
+  },
+  {
+    "exercisename": "Incline Bench Press",
+    "workouttype": "Strength",
+    "description": "Chest pressing exercise targeting upper chest and shoulders",
+    "input_type": "reps"
+  },
+  {
+    "exercisename": "Arnold Press",
+    "workouttype": "Strength",
+    "description": "Shoulder exercise targeting deltoids and arms",
+    "input_type": "reps"
+  },
+  {
+    "exercisename": "Pull Over",
+    "workouttype": "Strength",
+    "description": "Upper body exercise targeting chest and lats",
+    "input_type": "reps"
+  },
+  {
+    "exercisename": "Seated Leg Press",
+    "workouttype": "Strength",
+    "description": "Lower body compound exercise targeting quads and glutes",
+    "input_type": "reps"
+  },
+  {
+    "exercisename": "Step Up",
+    "workouttype": "Bodyweight",
+    "description": "Leg exercise using elevated surface to strengthen quads and glutes",
+    "input_type": "reps"
+  },
+  {
+    "exercisename": "Wall Sit",
+    "workouttype": "Bodyweight",
+    "description": "Static leg exercise targeting quads and endurance",
+    "input_type": "duration"
+  },
+  {
+    "exercisename": "Hip Thrust",
+    "workouttype": "Strength",
+    "description": "Glute activation exercise targeting posterior chain",
+    "input_type": "reps"
+  },
+  {
+    "exercisename": "Tricep Kickback",
+    "workouttype": "Strength",
+    "description": "Isolation exercise targeting triceps muscles",
+    "input_type": "reps"
+  },
+  {
+    "exercisename": "Side Lateral Raise",
+    "workouttype": "Strength",
+    "description": "Shoulder isolation exercise targeting deltoids",
+    "input_type": "reps"
+  },
+  {
+    "exercisename": "Reverse Fly",
+    "workouttype": "Strength",
+    "description": "Upper back exercise targeting rear delts and rhomboids",
+    "input_type": "reps"
+  },
+  {
+    "exercisename": "Medicine Ball Slam",
+    "workouttype": "HIIT",
+    "description": "Explosive full body exercise improving power and cardio",
+    "input_type": "reps"
+  },
+  {
+    "exercisename": "Box Jump",
+    "workouttype": "HIIT",
+    "description": "Plyometric leg exercise improving explosiveness and endurance",
+    "input_type": "reps"
+  },
+  {
+    "exercisename": "Skater Jump",
+    "workouttype": "HIIT",
+    "description": "Lateral jump exercise targeting legs, glutes, and balance",
+    "input_type": "reps"
+  },
+  {
+    "exercisename": "Bear Crawl",
+    "workouttype": "HIIT",
+    "description": "Full body dynamic exercise engaging core and upper body",
+    "input_type": "duration"
+  },
+  {
+    "exercisename": "Sprint",
+    "workouttype": "Cardio",
+    "description": "High-intensity running exercise for speed and endurance",
+    "input_type": "duration"
+  },
+  {
+    "exercisename": "Rowing",
+    "workouttype": "Cardio",
+    "description": "Full body cardiovascular exercise using rowing machine",
+    "input_type": "duration"
+  },
+  {
+    "exercisename": "Elliptical",
+    "workouttype": "Cardio",
+    "description": "Low-impact cardiovascular exercise engaging legs and arms",
+    "input_type": "duration"
+  },
+  {
+    "exercisename": "Side Bend",
+    "workouttype": "Core",
+    "description": "Oblique-targeting exercise using side bending movement",
+    "input_type": "reps"
+  },
+  {
+    "exercisename": "Hollow Hold",
+    "workouttype": "Core",
+    "description": "Static core exercise strengthening abdominals and lower back",
+    "input_type": "duration"
+  },
+  {
+    "exercisename": "Back Extension",
+    "workouttype": "Core",
+    "description": "Lower back strengthening exercise targeting erector spinae",
+    "input_type": "reps"
+  },
+  {
+    "exercisename": "Standing Forward Bend",
+    "workouttype": "Flexibility",
+    "description": "Stretching exercise for hamstrings, lower back, and spine",
+    "input_type": "duration"
+  },
+  {
+    "exercisename": "Child`s Pose",
+    "workouttype": "Flexibility",
+    "description": "Yoga stretch for back, hips, and shoulders",
+    "input_type": "duration"
+  },
+  {
+    "exercisename": "Cat Stretch",
+    "workouttype": "Flexibility",
+    "description": "Spinal mobility stretch for flexibility",
+    "input_type": "duration"
+  },
+  {
+    "exercisename": "Triceps Stretch",
+    "workouttype": "Flexibility",
+    "description": "Stretching exercise for upper arm and triceps",
+    "input_type": "duration"
+  },
+  {
+    "exercisename": "Chest Opener",
+    "workouttype": "Flexibility",
+    "description": "Stretching exercise for chest and shoulder mobility",
+    "input_type": "duration"
+  },
+  {
+    "exercisename": "Pigeon Pose",
+    "workouttype": "Flexibility",
+    "description": "Yoga pose targeting hip flexibility and glutes",
+    "input_type": "duration"
+  },
+  {
+    "exercisename": "Wall Angels",
+    "workouttype": "Flexibility",
+    "description": "Shoulder mobility exercise improving posture",
+    "input_type": "duration"
+  },
+  {
+    "exercisename": "Tricep Pushdown",
+    "workouttype": "Strength",
+    "description": "Isolation exercise using cable machine targeting triceps",
+    "input_type": "reps"
+  },
+  {
+    "exercisename": "Chest Press",
+    "workouttype": "Strength",
+    "description": "Machine-based chest exercise targeting pectorals and triceps",
+    "input_type": "reps"
+  },
+  {
+    "exercisename": "Preacher Curl",
+    "workouttype": "Strength",
+    "description": "Isolation exercise using preacher bench targeting biceps",
+    "input_type": "reps"
+  },
+  {
+    "exercisename": "Cable Fly",
+    "workouttype": "Strength",
+    "description": "Chest isolation exercise using cable machine for chest activation",
+    "input_type": "reps"
+  },
+  {
+    "exercisename": "Seated Row",
+    "workouttype": "Strength",
+    "description": "Back pulling exercise using cable machine targeting lats and rear delts",
+    "input_type": "reps"
+  },
+  {
+    "exercisename": "Leg Press Machine",
+    "workouttype": "Strength",
+    "description": "Lower body exercise using machine targeting quads, glutes, and hamstrings",
+    "input_type": "reps"
+  },
+  {
+    "exercisename": "Shoulder Press Machine",
+    "workouttype": "Strength",
+    "description": "Machine shoulder press targeting deltoids and triceps",
+    "input_type": "reps"
+  },
+  {
+    "exercisename": "Lat Pulldown Machine",
+    "workouttype": "Strength",
+    "description": "Back exercise using machine targeting lats and biceps",
+    "input_type": "reps"
+  },
+  {
+    "exercisename": "Rest",
+    "workouttype": "",
+    "description": "",
+    "input_type": "duration"
+  }
+]
